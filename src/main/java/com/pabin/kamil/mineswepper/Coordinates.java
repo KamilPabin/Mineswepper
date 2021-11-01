@@ -1,5 +1,7 @@
 package com.pabin.kamil.mineswepper;
 
+import java.util.Objects;
+
 import static java.lang.String.format;
 
 final class Coordinates {
@@ -21,5 +23,19 @@ final class Coordinates {
         if (coordinate < 0) {
             throw new IllegalArgumentException(format("Coordinate cannot be smaller than 0: %d", coordinate));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Coordinates that = (Coordinates) o;
+        return x == that.x &&
+                y == that.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

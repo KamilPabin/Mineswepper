@@ -1,6 +1,7 @@
 package com.pabin.kamil.mineswepper;
 
 import static com.pabin.kamil.mineswepper.FieldState.HIDDEN;
+import static com.pabin.kamil.mineswepper.FieldState.UNFOLDED;
 
 final class Field {
     private final int value;
@@ -20,6 +21,14 @@ final class Field {
 
     boolean isMine() {
         return value == -1;
+    }
+
+    boolean isEmpty() {
+        return value == 0;
+    }
+
+    boolean isUnfolded() {
+        return fieldState == UNFOLDED;
     }
 
      Field countedMinesAround() {
