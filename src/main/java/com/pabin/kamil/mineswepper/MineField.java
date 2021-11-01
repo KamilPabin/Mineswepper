@@ -11,6 +11,10 @@ final class MineField {
         this.minefield = minefield;
     }
 
+    void unfold(Coordinates coordinates) {
+        minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].unfold();
+    }
+
     @Override
     public String toString() {
         return Arrays.stream(minefield).map(Arrays::toString).collect(Collectors.joining("\n"));
