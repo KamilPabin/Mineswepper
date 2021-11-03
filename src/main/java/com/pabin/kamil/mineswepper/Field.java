@@ -52,7 +52,7 @@ final class Field {
         return new Field(0);
     }
 
-    public Field markAsUnsafe() {
+    public Field markedAsUnsafe() {
         if(fieldState != HIDDEN) {
             return this;
         }
@@ -68,5 +68,12 @@ final class Field {
             return "🚩";
         }
         return value == -1 ? "*" : Integer.toString(value);
+    }
+
+    public Field markedAsSafe() {
+        if(fieldState != UNSAFE) {
+            return this;
+        }
+        return new Field(value, HIDDEN);
     }
 }

@@ -21,7 +21,7 @@ final class MineField {
     }
 
     void markAsUnsafe(Coordinates coordinates) {
-        minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].markAsUnsafe();
+        minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].markedAsUnsafe();
     }
 
     private void unfoldAdjacentFields(Coordinates coordinates) {
@@ -60,5 +60,9 @@ final class MineField {
     @Override
     public String toString() {
         return Arrays.stream(minefield).map(Arrays::toString).collect(Collectors.joining("\n"));
+    }
+
+    public void markFieldSafe(Coordinates coordinates) {
+        minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].markedAsSafe();
     }
 }
