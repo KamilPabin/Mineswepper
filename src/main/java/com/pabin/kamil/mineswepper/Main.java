@@ -10,7 +10,8 @@ public final class Main {
         SecureRandom generator = new SecureRandom();
         MineFieldFactory factory = new MineFieldFactory(generator);
         MineField mineField = factory.create(size, numberOfMines);
-        mineField.unfold(Coordinates.of(0, 0));
+        mineField.unfold(Coordinates.of(10, 10));
+        mineField.markAsUnsafe(Coordinates.of(8, 8));
         System.out.println(mineField);
     }
 }

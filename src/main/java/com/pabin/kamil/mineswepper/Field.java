@@ -1,7 +1,6 @@
 package com.pabin.kamil.mineswepper;
 
-import static com.pabin.kamil.mineswepper.FieldState.HIDDEN;
-import static com.pabin.kamil.mineswepper.FieldState.UNFOLDED;
+import static com.pabin.kamil.mineswepper.FieldState.*;
 
 final class Field {
     private final int value;
@@ -19,7 +18,7 @@ final class Field {
         this.fieldState = fieldState;
     }
 
-    boolean isMine() {
+    boolean containsMine() {
         return value == -1;
     }
 
@@ -31,23 +30,18 @@ final class Field {
         return fieldState == UNFOLDED;
     }
 
-     Field countedMinesAround() {
-        if(!isMine()) {
+     Field increaseMinesAroundCount() {
+        if(!containsMine()) {
             return new Field(this.value + 1);
         }
         return this;
     }
 
     Field unfold() {
-        return new Field(value, FieldState.UNFOLDED);
-    }
-
-    @Override
-    public String toString() {
-        if (fieldState == HIDDEN) {
-            return " ";
+        if(fieldState != HIDDEN) {
+            return this;
         }
-        return value == -1 ? "*" : Integer.toString(value);
+        return new Field(value, FieldState.UNFOLDED);
     }
 
     static Field mine() {
@@ -56,5 +50,23 @@ final class Field {
 
     static Field empty() {
         return new Field(0);
+    }
+
+    public Field markAsUnsafe() {
+        if(fieldState != HIDDEN) {
+            return this;
+        }
+        return new Field(value, UNSAFE);
+    }
+
+    @Override
+    public String toString() {
+        if (fieldState == HIDDEN) {
+            return " ";
+        }
+        if(fieldState == UNSAFE) {
+            return "🚩";
+        }
+        return value == -1 ? "*" : Integer.toString(value);
     }
 }

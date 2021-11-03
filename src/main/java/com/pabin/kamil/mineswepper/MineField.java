@@ -20,6 +20,10 @@ final class MineField {
 
     }
 
+    void markAsUnsafe(Coordinates coordinates) {
+        minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].markAsUnsafe();
+    }
+
     private void unfoldAdjacentFields(Coordinates coordinates) {
         traverseRows(coordinates);
     }
@@ -44,7 +48,7 @@ final class MineField {
                 continue;
             }
 
-            if (!fieldToUnfold.isMine() && !fieldToUnfold.isUnfolded()) {
+            if (!fieldToUnfold.containsMine() && !fieldToUnfold.isUnfolded()) {
                 minefield[x][y] = fieldToUnfold.unfold();
                 if(fieldToUnfold.isEmpty()) {
                     unfoldAdjacentFields(coordinatesToUnfold);
