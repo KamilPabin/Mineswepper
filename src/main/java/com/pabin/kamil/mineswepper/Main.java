@@ -19,7 +19,8 @@ public final class Main {
 
         mineField.unfold(Coordinates.of(10, 10));
         mineField.markFieldSafe(Coordinates.of(10,10));
-        System.out.println(mineField);
+        
+        System.out.println(mineField.view());
     }
 }
 

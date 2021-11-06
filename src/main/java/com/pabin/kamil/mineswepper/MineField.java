@@ -1,8 +1,5 @@
 package com.pabin.kamil.mineswepper;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 final class MineField {
 
     private final Field[][] minefield;
@@ -17,7 +14,6 @@ final class MineField {
         if (unfoldedField.isEmpty()) {
             unfoldAdjacentFields(coordinates);
         }
-
     }
 
     void markAsUnsafe(Coordinates coordinates) {
@@ -57,12 +53,11 @@ final class MineField {
         }
     }
 
-    @Override
-    public String toString() {
-        return Arrays.stream(minefield).map(Arrays::toString).collect(Collectors.joining("\n"));
-    }
-
     public void markFieldSafe(Coordinates coordinates) {
         minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].markedAsSafe();
+    }
+
+    MineFieldView view() {
+        return new MineFieldView(this.minefield);
     }
 }
