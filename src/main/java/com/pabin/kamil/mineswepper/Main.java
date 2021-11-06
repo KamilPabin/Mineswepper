@@ -14,10 +14,9 @@ public final class Main {
         int numberOfMines = 10;
         SecureRandom generator = new SecureRandom();
         Display display = new ConsoleDisplay();
-        InputHandler handler = new ConsoleInputHandler(new Scanner(System.in));
+        InputHandler handler = new ConsoleInputHandler(new Scanner(System.in), new CommandFactory());
 
         MineFieldFactory factory = new MineFieldFactory(generator);
-
         MineField mineField = factory.create(size, numberOfMines);
 
         while (true) {

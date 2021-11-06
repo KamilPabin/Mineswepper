@@ -1,10 +1,10 @@
 package com.pabin.kamil.mineswepper.domain;
 
-public final class MarkAsUnsafeCommand implements Command {
+final class MarkAsUnsafeCommand implements Command {
 
     private final Coordinates coordinates;
 
-    public MarkAsUnsafeCommand(Coordinates coordinates) {
+    MarkAsUnsafeCommand(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
 

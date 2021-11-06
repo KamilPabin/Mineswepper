@@ -1,8 +1,8 @@
 package com.pabin.kamil.mineswepper.domain;
 
-public final class NoOpCommand implements Command {
+final class NoOpCommand implements Command {
 
-    public static final Command INSTANCE = new NoOpCommand();
+    static final Command INSTANCE = new NoOpCommand();
 
     private NoOpCommand() {
     }
