@@ -71,9 +71,13 @@ public final class Field {
     }
 
     public Field markedAsSafe() {
-        if(fieldState != UNSAFE) {
+        if (fieldState != UNSAFE) {
             return this;
         }
         return new Field(value, HIDDEN);
+    }
+
+    public boolean isMarkedUnsafe() {
+        return fieldState == UNSAFE;
     }
 }

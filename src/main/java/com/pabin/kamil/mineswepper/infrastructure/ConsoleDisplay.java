@@ -6,7 +6,12 @@ import com.pabin.kamil.mineswepper.domain.MineFieldView;
 public final class ConsoleDisplay implements Display {
 
     @Override
-    public void display(MineFieldView view) {
+    public void show(MineFieldView view) {
         System.out.println(view);
+    }
+
+    @Override
+    public void show(String text) {
+        System.out.println(text);
     }
 }

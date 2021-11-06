@@ -1,5 +1,7 @@
 package com.pabin.kamil.mineswepper.domain;
 
+import java.util.Arrays;
+
 public final class MineField {
 
     private final Field[][] minefield;
@@ -54,10 +56,26 @@ public final class MineField {
 
             if (!fieldToUnfold.containsMine() && !fieldToUnfold.isUnfolded()) {
                 minefield[x][y] = fieldToUnfold.unfold();
-                if(fieldToUnfold.isEmpty()) {
+                if (fieldToUnfold.isEmpty()) {
                     unfoldAdjacentFields(coordinatesToUnfold);
                 }
             }
         }
+    }
+
+    public boolean isDisarmed() {
+        return Arrays.stream(this.minefield).flatMap(Arrays::stream)
+                .filter(Field::containsMine)
+                .anyMatch(Field::isMarkedUnsafe) ||
+                Arrays.stream(this.minefield).flatMap(Arrays::stream)
+                        .filter(f -> !f.containsMine())
+                        .allMatch(Field::isUnfolded);
+
+    }
+
+    public boolean anyMineExploded() {
+        return Arrays.stream(this.minefield).flatMap(Arrays::stream)
+                .filter(Field::containsMine)
+                .anyMatch(Field::isUnfolded);
     }
 }

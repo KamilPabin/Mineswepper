@@ -1,5 +1,7 @@
 package com.pabin.kamil.mineswepper.domain;
 
 public interface Display {
-    void display(MineFieldView view);
+    void show(MineFieldView view);
+
+    void show(String text);
 }
