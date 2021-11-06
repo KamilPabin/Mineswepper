@@ -1,4 +1,4 @@
-package com.pabin.kamil.mineswepper;
+package com.pabin.kamil.mineswepper.domain;
 
 enum FieldState {
     HIDDEN,

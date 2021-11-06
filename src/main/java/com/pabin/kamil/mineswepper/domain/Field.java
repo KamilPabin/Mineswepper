@@ -1,8 +1,8 @@
-package com.pabin.kamil.mineswepper;
+package com.pabin.kamil.mineswepper.domain;
 
-import static com.pabin.kamil.mineswepper.FieldState.*;
+import static com.pabin.kamil.mineswepper.domain.FieldState.*;
 
-final class Field {
+public final class Field {
     private final int value;
     private final FieldState fieldState;
 

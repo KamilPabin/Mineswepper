@@ -1,20 +1,20 @@
-package com.pabin.kamil.mineswepper;
+package com.pabin.kamil.mineswepper.domain;
 
 import java.security.SecureRandom;
 
 import static java.lang.String.format;
 
-final class MineFieldFactory {
+public final class MineFieldFactory {
 
     private static final int MINIMUM_REQUIRED_SIZE = 2;
 
     private final SecureRandom generator;
 
-    MineFieldFactory(SecureRandom generator) {
+    public MineFieldFactory(SecureRandom generator) {
         this.generator = generator;
     }
 
-    MineField create(int size, int mines) {
+    public MineField create(int size, int mines) {
         if (size < MINIMUM_REQUIRED_SIZE) {
             throw new IllegalArgumentException(format("Minefield cannot be smaller than %d", MINIMUM_REQUIRED_SIZE));
         }
@@ -57,7 +57,7 @@ final class MineFieldFactory {
     }
 
     private Coordinates generateCoordinates(int size) {
-        return new Coordinates(generator.nextInt(size), generator.nextInt(size));
+        return Coordinates.of(generator.nextInt(size), generator.nextInt(size));
     }
 
     private Field[][] emptyField(int size) {

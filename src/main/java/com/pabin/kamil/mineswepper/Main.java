@@ -1,5 +1,8 @@
 package com.pabin.kamil.mineswepper;
 
+import com.pabin.kamil.mineswepper.domain.*;
+import com.pabin.kamil.mineswepper.infrastructure.ConsoleDisplay;
+
 import java.security.SecureRandom;
 
 public final class Main {

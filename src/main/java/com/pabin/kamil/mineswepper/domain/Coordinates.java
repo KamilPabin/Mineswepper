@@ -1,21 +1,21 @@
-package com.pabin.kamil.mineswepper;
+package com.pabin.kamil.mineswepper.domain;
 
 import java.util.Objects;
 
 import static java.lang.String.format;
 
-final class Coordinates {
+public final class Coordinates {
     public final int x;
     public final int y;
 
-    Coordinates(int x, int y) {
+    private Coordinates(int x, int y) {
         validateCoordinate(x);
         validateCoordinate(y);
         this.x = x;
         this.y = y;
     }
 
-    static Coordinates of(int x, int y) {
+    public static Coordinates of(int x, int y) {
         return new Coordinates(x,y);
     }
 

@@ -1,9 +1,9 @@
-package com.pabin.kamil.mineswepper;
+package com.pabin.kamil.mineswepper.domain;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-final class MineFieldView {
+public final class MineFieldView {
     private final Field[][] fields;
 
     MineFieldView(Field[][] fields) {

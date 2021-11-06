@@ -1,6 +1,6 @@
-package com.pabin.kamil.mineswepper;
+package com.pabin.kamil.mineswepper.domain;
 
-final class MineField {
+public final class MineField {
 
     private final Field[][] minefield;
 
@@ -8,7 +8,7 @@ final class MineField {
         this.minefield = minefield;
     }
 
-    void unfold(Coordinates coordinates) {
+    public void unfold(Coordinates coordinates) {
         Field unfoldedField = minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].unfold();
 
         if (unfoldedField.isEmpty()) {
@@ -16,7 +16,7 @@ final class MineField {
         }
     }
 
-    void markAsUnsafe(Coordinates coordinates) {
+    public void markAsUnsafe(Coordinates coordinates) {
         minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].markedAsUnsafe();
     }
 
@@ -57,7 +57,7 @@ final class MineField {
         minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].markedAsSafe();
     }
 
-    MineFieldView view() {
+    public MineFieldView view() {
         return new MineFieldView(this.minefield);
     }
 }
