@@ -20,6 +20,14 @@ public final class MineField {
         minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].markedAsUnsafe();
     }
 
+    public void markFieldSafe(Coordinates coordinates) {
+        minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].markedAsSafe();
+    }
+
+    public MineFieldView view() {
+        return new MineFieldView(this.minefield);
+    }
+
     private void unfoldAdjacentFields(Coordinates coordinates) {
         traverseRows(coordinates);
     }
@@ -51,13 +59,5 @@ public final class MineField {
                 }
             }
         }
-    }
-
-    public void markFieldSafe(Coordinates coordinates) {
-        minefield[coordinates.x][coordinates.y] = minefield[coordinates.x][coordinates.y].markedAsSafe();
-    }
-
-    public MineFieldView view() {
-        return new MineFieldView(this.minefield);
     }
 }
