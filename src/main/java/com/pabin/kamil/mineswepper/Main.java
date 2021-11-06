@@ -6,8 +6,10 @@ public final class Main {
 
     public static void main(String[] args) {
         int size = 20;
-        int numberOfMines = 100;
+        int numberOfMines = 30;
         SecureRandom generator = new SecureRandom();
+        Display display = new ConsoleDisplay();
+
         MineFieldFactory factory = new MineFieldFactory(generator);
 
         MineField mineField = factory.create(size, numberOfMines);
@@ -19,8 +21,8 @@ public final class Main {
 
         mineField.unfold(Coordinates.of(10, 10));
         mineField.markFieldSafe(Coordinates.of(10,10));
-        
-        System.out.println(mineField.view());
+
+        display.display(mineField.view());
     }
 }
 
