@@ -18,7 +18,7 @@ public final class Field {
         this.fieldState = fieldState;
     }
 
-    boolean containsMine() {
+    public boolean containsMine() {
         return value == -1;
     }
 
@@ -26,19 +26,23 @@ public final class Field {
         return value == 0;
     }
 
-    boolean isUnfolded() {
+    public boolean isUnfolded() {
         return fieldState == UNFOLDED;
     }
 
-     Field increaseMinesAroundCount() {
-        if(!containsMine()) {
+    public int value() {
+        return value;
+    }
+
+    Field increaseMinesAroundCount() {
+        if (!containsMine()) {
             return new Field(this.value + 1);
         }
         return this;
     }
 
     Field unfold() {
-        if(fieldState != HIDDEN) {
+        if (fieldState != HIDDEN) {
             return this;
         }
         return new Field(value, FieldState.UNFOLDED);
@@ -79,5 +83,9 @@ public final class Field {
 
     public boolean isMarkedUnsafe() {
         return fieldState == UNSAFE;
+    }
+
+    public boolean isHidden() {
+        return fieldState == HIDDEN;
     }
 }

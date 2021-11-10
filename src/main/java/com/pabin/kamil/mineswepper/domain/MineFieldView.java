@@ -10,7 +10,7 @@ public final class MineFieldView {
         this.fields = fields;
     }
 
-    Field fieldAt(Coordinates coordinates) {
+    public Field fieldAt(Coordinates coordinates) {
         return fields[coordinates.x][coordinates.y];
     }
 
@@ -18,4 +18,5 @@ public final class MineFieldView {
     public String toString() {
         return Arrays.stream(fields).map(Arrays::toString).collect(Collectors.joining("\n"));
     }
+
 }
