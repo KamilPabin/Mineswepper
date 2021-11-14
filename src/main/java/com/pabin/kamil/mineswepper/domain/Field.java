@@ -18,12 +18,17 @@ public final class Field {
         this.fieldState = fieldState;
     }
 
-    public boolean containsMine() {
-        return value == -1;
+    static Field mine() {
+        return new Field(-1);
     }
 
-    boolean isEmpty() {
-        return value == 0;
+    static Field empty() {
+        return new Field(0);
+    }
+
+
+    public boolean containsMine() {
+        return value == -1;
     }
 
     public boolean isUnfolded() {
@@ -34,7 +39,19 @@ public final class Field {
         return value;
     }
 
-    Field increaseMinesAroundCount() {
+    public boolean isMarkedUnsafe() {
+        return fieldState == UNSAFE;
+    }
+
+    public boolean isHidden() {
+        return fieldState == HIDDEN;
+    }
+
+    boolean isEmpty() {
+        return value == 0;
+    }
+
+    Field incrementMinesAroundCount() {
         if (!containsMine()) {
             return new Field(this.value + 1);
         }
@@ -48,19 +65,18 @@ public final class Field {
         return new Field(value, FieldState.UNFOLDED);
     }
 
-    static Field mine() {
-        return new Field(-1);
-    }
-
-    static Field empty() {
-        return new Field(0);
-    }
-
-    public Field markedAsUnsafe() {
-        if(fieldState != HIDDEN) {
+    Field markedAsUnsafe() {
+        if (fieldState != HIDDEN) {
             return this;
         }
         return new Field(value, UNSAFE);
+    }
+
+    Field markedAsSafe() {
+        if (fieldState != UNSAFE) {
+            return this;
+        }
+        return new Field(value, HIDDEN);
     }
 
     @Override
@@ -68,24 +84,9 @@ public final class Field {
         if (fieldState == HIDDEN) {
             return " ";
         }
-        if(fieldState == UNSAFE) {
+        if (fieldState == UNSAFE) {
             return "🚩";
         }
         return value == -1 ? "*" : Integer.toString(value);
-    }
-
-    public Field markedAsSafe() {
-        if (fieldState != UNSAFE) {
-            return this;
-        }
-        return new Field(value, HIDDEN);
-    }
-
-    public boolean isMarkedUnsafe() {
-        return fieldState == UNSAFE;
-    }
-
-    public boolean isHidden() {
-        return fieldState == HIDDEN;
     }
 }

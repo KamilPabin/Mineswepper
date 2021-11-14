@@ -9,6 +9,5 @@ final class NoOpCommand implements Command {
 
     @Override
     public void execute(MineField mineField) {
-
     }
 }

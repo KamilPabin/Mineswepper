@@ -26,7 +26,6 @@ public final class Main {
             Command command = handler.readCommand();
             command.execute(mineField);
             display.show(mineField.view());
-            System.out.println(mineField.view());
         }
     }
 }

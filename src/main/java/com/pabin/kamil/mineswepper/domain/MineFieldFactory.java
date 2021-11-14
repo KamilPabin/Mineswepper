@@ -40,7 +40,7 @@ public final class MineFieldFactory {
         for (int x = coordinates.x - 1; x < coordinates.x + 2; x++) {
             for (int y = coordinates.y - 1; y < coordinates.y + 2; y++) {
                 try {
-                    mineField[x][y] = mineField[x][y].increaseMinesAroundCount();
+                    mineField[x][y] = mineField[x][y].incrementMinesAroundCount();
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("On boundary");
                 }
