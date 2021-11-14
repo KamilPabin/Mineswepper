@@ -22,7 +22,7 @@ public final class Main {
         MineFieldFactory factory = new MineFieldFactory(generator);
         MineField mineField = factory.create(size, numberOfMines);
 
-        while (true) {
+        while (!mineField.anyMineExploded() && !mineField.isDisarmed()) {
             Command command = handler.readCommand();
             command.execute(mineField);
             display.show(mineField.view());

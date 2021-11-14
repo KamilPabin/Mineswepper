@@ -1,6 +1,8 @@
 package com.pabin.kamil.mineswepper.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public final class MineField {
 
@@ -41,6 +43,7 @@ public final class MineField {
     }
 
     private void traverseColumns(Coordinates coordinates, int x) {
+        List<Coordinates> coordinatesToTraverse = new ArrayList<>();
         for (int y = coordinates.y -1 ; y < coordinates.y + 2; y++) {
             Field fieldToUnfold;
             Coordinates coordinatesToUnfold;
@@ -57,16 +60,17 @@ public final class MineField {
             if (!fieldToUnfold.containsMine() && !fieldToUnfold.isUnfolded()) {
                 minefield[x][y] = fieldToUnfold.unfold();
                 if (fieldToUnfold.isEmpty()) {
-                    unfoldAdjacentFields(coordinatesToUnfold);
+                    coordinatesToTraverse.add(coordinatesToUnfold);
                 }
             }
         }
+        coordinatesToTraverse.forEach(this::unfoldAdjacentFields);
     }
 
     public boolean isDisarmed() {
         return Arrays.stream(this.minefield).flatMap(Arrays::stream)
                 .filter(Field::containsMine)
-                .anyMatch(Field::isMarkedUnsafe) ||
+                .allMatch(Field::isMarkedUnsafe) ||
                 Arrays.stream(this.minefield).flatMap(Arrays::stream)
                         .filter(f -> !f.containsMine())
                         .allMatch(Field::isUnfolded);
